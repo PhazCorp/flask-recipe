@@ -7,6 +7,7 @@ from sqlalchemy.sql import func
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
+# Connect to mariadb database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@127.0.0.1:3306/flask_recipe'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -24,6 +25,7 @@ class Recipe(db.Model):
     def __repr__(self):
         return f'<Recipe> {self.title}'
 
+# Routes
 @app.route('/api/recipes')
 def index():
     recipes = Recipe.query.all()
